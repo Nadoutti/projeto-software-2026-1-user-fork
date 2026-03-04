@@ -1,9 +1,14 @@
 from flask import Flask, request, jsonify
 from db import db
 from models import User
+import os
+
+postgres_url = os.environ["POSTGRES_URL"]
+postgres_user = os.environ["POSTGRES_USER"]
+postgres_pass = os.environ["POSTGRES_PASSWORD"]
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://appuser:apppass@localhost:5432/users"
+app.config["SQLALCHEMY_DATABASE_URI"] = f"postgresql://{postgres_user}:{postgres_pass}@{postgres_url}:5432/users"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db.init_app(app)
