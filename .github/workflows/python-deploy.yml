@@ -6,16 +6,15 @@ name: Python application
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
-permissions:
-  contents: read
 
 jobs:
   build:
 
     runs-on: ubuntu-latest
+    permissions: 
+      contents: write
+      pull-requests: write
+      packages: write
 
     steps:
     - name: Login to Docker Hub
